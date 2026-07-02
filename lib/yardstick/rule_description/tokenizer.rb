@@ -12,10 +12,10 @@ module Yardstick
       include Adamantium
 
       # Mapping of token classes to their matching pattern
-      CLASSIFIERS = Classifier::List.new([
-                                           Classifier::Pattern.new(Token::Subject, /(\*[@\w ]+?\*)/),
-                                           Classifier::Pattern.new(Token::Option, /(_[\w ]+?_)/),
-                                           Classifier::Default.new(Token::Text)
+      CLASSIFIERS = Classifier::List.new(classifiers: [
+                                           Classifier::Pattern.new(type: Token::Subject, pattern: /(\*[@\w ]+?\*)/),
+                                           Classifier::Pattern.new(type: Token::Option,  pattern: /(_[\w ]+?_)/),
+                                           Classifier::Default.new(type: Token::Text)
                                          ])
 
       private_constant(:CLASSIFIERS)

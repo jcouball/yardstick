@@ -5,11 +5,15 @@ module Yardstick
   class RuleDescription
     # Token classification
     module Classifier
-      # List of classifiers
-      class List
-        include Concord.new(:classifiers)
-        include Adamantium
+      # @!attribute [r] classifiers
+      #   The list of classifier objects
+      #   @api private
+      #   @return [Array]
+      ListData = Data.define(:classifiers)
+      private_constant :ListData
 
+      # List of classifiers
+      class List < ListData
         # Classify a token by returning the first match
         #
         # @param token [String] markup text
@@ -46,11 +50,19 @@ module Yardstick
         end
       end
 
-      # Pattern based classifier
-      class Pattern
-        include Concord::Public.new(:type, :pattern)
-        include Adamantium
+      # @!attribute [r] type
+      #   The token type to produce on match
+      #   @api private
+      #   @return [Class]
+      # @!attribute [r] pattern
+      #   The pattern to match against
+      #   @api private
+      #   @return [Regexp]
+      PatternData = Data.define(:type, :pattern)
+      private_constant :PatternData
 
+      # Pattern based classifier
+      class Pattern < PatternData
         # Try to coerce text if it matches
         #
         # @param text [String]
@@ -86,11 +98,15 @@ module Yardstick
         end
       end
 
-      # Catch all classifier
-      class Default
-        include Concord.new(:type)
-        include Adamantium
+      # @!attribute [r] type
+      #   The token type for unmatched text
+      #   @api private
+      #   @return [Class]
+      DefaultData = Data.define(:type)
+      private_constant :DefaultData
 
+      # Catch all classifier
+      class Default < DefaultData
         # Coerces any string
         #
         # @param text [String]
