@@ -66,8 +66,27 @@ namespace :metrics do
     Yardstick::Rake::Measurement.new(:measure, yardstick_options)
     Yardstick::Rake::Verify.new(:verify, yardstick_options)
   end
+
+  desc 'Run mutation testing with mutant'
+  task :mutant do
+    mutant_options = YAML.load_file('config/mutant.yml')
+    namespace_subject = mutant_options.fetch('namespace', 'Yardstick')
+    gem_name          = mutant_options.fetch('name', 'yardstick')
+    args = %W[
+      mutant run
+      --include lib
+      --require #{gem_name}
+      --use rspec
+      --usage opensource
+      #{namespace_subject}
+    ]
+    sh(*args)
+  end
 end
 
 task ci: %w[metrics:rubocop metrics:yardstick:verify spec:integration]
+
+# metrics:mutant is intentionally excluded from ci — mutation testing
+# is slow and should be run separately as needed.
 
 task default: :spec
