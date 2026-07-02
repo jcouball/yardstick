@@ -13,7 +13,7 @@ module Yardstick
     #
     # @api private
     def self.parse(description)
-      new(Tokenizer.new(description).tokenize)
+      new(Tokenizer.new(text: description).tokenize)
     end
 
     include Enumerable

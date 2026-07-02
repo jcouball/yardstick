@@ -7,7 +7,7 @@ module Yardstick
     describe Tokenizer, '#tokenize' do
       subject { instance.tokenize }
 
-      let(:instance) { described_class.new(input) }
+      let(:instance) { described_class.new(text: input) }
 
       context 'when plain text' do
         let(:input)  { 'plain string'            }
