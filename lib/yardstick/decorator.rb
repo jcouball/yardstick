@@ -1,20 +1,39 @@
 # frozen_string_literal: true
 
+# Measure YARD documentation coverage
 module Yardstick
-  # A string decorator for applying unix console codes
-  class Decorator
-    include Concord.new(:color, :mode)
-    include Adamantium
+  # Holds the attributes for a Decorator
+  # @!attribute [r] color
+  #   The resolved ANSI color code
+  #   @api private
+  #   @return [Integer]
+  # @!attribute [r] mode
+  #   The resolved ANSI mode code
+  #   @api private
+  #   @return [Integer]
+  DecoratorData = Data.define(:color, :mode)
+  private_constant :DecoratorData
 
+  # A string decorator for applying unix console codes
+  # @!attribute [r] color
+  #   The resolved ANSI color code
+  #   @api private
+  #   @return [Integer]
+  # @!attribute [r] mode
+  #   The resolved ANSI mode code
+  #   @api private
+  #   @return [Integer]
+  # @api public
+  class Decorator < DecoratorData
     FORMAT = "\e[%<mode>d;%<color>dm%<string>s\e[0m"
 
     COLOR_CODES = {
-      red:    31,
+      red: 31,
       yellow: 33
     }.freeze
 
     MODE_CODES = {
-      bold:      1,
+      bold: 1,
       underline: 4
     }.freeze
 
@@ -28,8 +47,8 @@ module Yardstick
     # @return [undefined]
     #
     # @api private
-    def initialize(color, mode)
-      super(COLOR_CODES.fetch(color), MODE_CODES.fetch(mode))
+    def initialize(color:, mode:)
+      super(color: COLOR_CODES.fetch(color), mode: MODE_CODES.fetch(mode))
     end
 
     # Decorate a string
@@ -43,15 +62,9 @@ module Yardstick
       FORMAT % { mode: mode, color: color, string: string }
     end
 
-    NONE = Class.new(self) do
-      def initialize; end # rubocop:disable Lint/MissingSuper
+    NONE = Data.define { def decorate(string) = string }.new
 
-      def decorate(string)
-        string
-      end
-    end.new
-
-    RED_BOLD          = new(:red, :bold)
-    YELLOW_UNDERLINED = new(:yellow, :underline)
+    RED_BOLD          = new(color: :red,    mode: :bold)
+    YELLOW_UNDERLINED = new(color: :yellow, mode: :underline)
   end
 end
