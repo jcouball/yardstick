@@ -33,8 +33,10 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ice_nine',      '~> 0.11'
   spec.add_dependency 'yard',          '~> 0.9'
 
-  spec.add_development_dependency 'coveralls', '~> 0.8'
-  spec.add_development_dependency 'devtools',  '~> 0.1'
+  spec.add_development_dependency 'rake',      '~> 13.0'
+  spec.add_development_dependency 'rspec',     '~> 3.13'
+  spec.add_development_dependency 'rspec-its', '~> 2.0'
+  spec.add_development_dependency 'rubocop',   '~> 1.88'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.

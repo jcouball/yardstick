@@ -16,8 +16,10 @@ if ENV['COVERAGE'] == 'true'
 end
 
 require 'tempfile'
+require 'rspec/its'
 require 'yardstick'
-require 'devtools/spec_helper'
+
+Dir[File.join(__dir__, 'support/**/*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expect_with|
