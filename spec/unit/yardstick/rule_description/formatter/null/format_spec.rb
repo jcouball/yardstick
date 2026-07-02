@@ -6,7 +6,7 @@ RSpec.describe Yardstick::RuleDescription::Formatter::Null, '#format' do
   subject { described_class.new(description).format }
 
   let(:description) do
-    Yardstick::RuleDescription.new([
+    Yardstick::RuleDescription.new(tokens: [
                                      Yardstick::RuleDescription::Token::Subject.new(string: 'important'),
                                      Yardstick::RuleDescription::Token::Text.new(string: ' recommended '),
                                      Yardstick::RuleDescription::Token::Option.new(string: 'value'),

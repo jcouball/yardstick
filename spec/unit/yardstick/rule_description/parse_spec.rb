@@ -15,6 +15,6 @@ module Yardstick
       ]
     end
 
-    it { should eq(described_class.new(tokens)) }
+    it { should eq(described_class.new(tokens: tokens)) }
   end
 end
