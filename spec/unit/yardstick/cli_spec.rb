@@ -34,7 +34,7 @@ end
 describe Yardstick::CLI do
   def capture_display(&block)
     capture_stdout do
-      expect(block).to raise_error(SystemExit)
+      expect { block.call }.to raise_error(SystemExit)
     end
   end
 
