@@ -24,7 +24,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.required_ruby_version = '>= 3.3'
 
-  spec.executables = %w[yardstick]
+  spec.bindir      = 'exe'
+  spec.executables = Dir['exe/*'].map { |f| File.basename(f) }
 
   spec.add_dependency 'abstract_type', '~> 0.0'
   spec.add_dependency 'adamantium',    '~> 0.2'
