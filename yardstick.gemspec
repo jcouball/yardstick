@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'yard',          '~> 0.9'
 
   spec.add_development_dependency 'flay',      '~> 2.0'
+  spec.add_development_dependency 'flog',      '~> 4.0'
   spec.add_development_dependency 'rake',      '~> 13.0'
   spec.add_development_dependency 'reek',      '~> 6.0'
   spec.add_development_dependency 'rspec',     '~> 3.13'
