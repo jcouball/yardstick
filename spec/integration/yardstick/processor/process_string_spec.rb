@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Yardstick::Document, '#process_string' do
   subject(:measurements) { processor.process_string(method) }
 
-  let(:processor) { Yardstick::Processor.new(config) }
+  let(:processor) { Yardstick::Processor.new(config: config) }
   let(:config)    { Yardstick::Config.new            }
 
   let(:valid_method) do

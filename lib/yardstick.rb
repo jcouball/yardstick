@@ -55,7 +55,7 @@ module Yardstick
   #
   # @api public
   def self.measure(config = Config.new)
-    Processor.new(config).process
+    Processor.new(config: config).process
   end
 
   # Measure a string of code and YARD documentation
@@ -75,7 +75,7 @@ module Yardstick
   #
   # @api public
   def self.measure_string(string, config = Config.new)
-    Processor.new(config).process_string(string)
+    Processor.new(config: config).process_string(string)
   end
 
   # Round percentage to 1/10th of a percent
