@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 RSpec.describe Yardstick::RuleDescription::Formatter::Null, '#format' do
-  subject { described_class.new(description).format }
+  subject { described_class.new(description: description).format }
 
   let(:description) do
     Yardstick::RuleDescription.new(tokens: [

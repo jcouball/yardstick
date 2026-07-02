@@ -90,7 +90,7 @@ module Yardstick
     #
     # @api private
     def formatted_description
-      RuleDescription::Formatter.new(description).format
+      RuleDescription::Formatter.new(description: description).format
     end
 
     # Measure the document using the rule provided to the constructor
