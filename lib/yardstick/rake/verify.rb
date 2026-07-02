@@ -9,8 +9,6 @@ module Yardstick
   module Rake
     # A rake task for verifying the doc thresholds
     class Verify < ::Rake::TaskLib
-      include Concord.new(:name, :config, :threshold)
-
       # Initialize a Verify task
       #
       # @example
@@ -31,9 +29,12 @@ module Yardstick
       #
       # @api public
       def initialize(name = :verify_measurements, options = {}, &)
-        config = Config.coerce(options, &)
+        super()
 
-        super(name, config, config.threshold)
+        config     = Config.coerce(options, &)
+        @name      = name
+        @config    = config
+        @threshold = config.threshold
 
         assert_threshold
         define
@@ -53,7 +54,7 @@ module Yardstick
       #
       # @api public
       def verify_measurements
-        puts "YARD-Coverage: #{total_coverage}% (threshold: #{threshold}%)" if config.verbose?
+        puts "YARD-Coverage: #{total_coverage}% (threshold: #{threshold}%)" if @config.verbose?
         assert_meets_threshold
         assert_matches_threshold
       end
@@ -72,6 +73,27 @@ module Yardstick
       end
 
       private
+
+      # The rake task name
+      #
+      # @return [Symbol]
+      #
+      # @api private
+      attr_reader :name
+
+      # The yardstick configuration
+      #
+      # @return [Yardstick::Config]
+      #
+      # @api private
+      attr_reader :config
+
+      # The coverage threshold percentage
+      #
+      # @return [Float]
+      #
+      # @api private
+      attr_reader :threshold
 
       # Define the task
       #
