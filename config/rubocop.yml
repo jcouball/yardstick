@@ -70,11 +70,12 @@ Style/TrailingCommaInHashLiteral:
 Naming/PredicatePrefix:
   Enabled: false
 
-# Spec and gemspec blocks are naturally long
+# Spec and gemspec blocks are naturally long; so are Rakefile task blocks
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
     - '*.gemspec'
+    - 'Rakefile'
 
 # Buggy
 Lint/FormatParameterMismatch:

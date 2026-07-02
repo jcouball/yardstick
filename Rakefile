@@ -39,11 +39,9 @@ namespace :metrics do
 
     average = flog.average
 
-    if average <= threshold
-      puts "Passed flog (average: #{average.round(1)}, threshold: #{threshold})"
-    else
-      raise "Flog average #{average.round(1)} exceeds threshold #{threshold}"
-    end
+    raise "Flog average #{average.round(1)} exceeds threshold #{threshold}" unless average <= threshold
+
+    puts "Passed flog (average: #{average.round(1)}, threshold: #{threshold})"
   end
 
   flay_options = YAML.load_file('config/flay.yml')
@@ -67,6 +65,12 @@ namespace :metrics do
     Yardstick::Rake::Verify.new(:verify, yardstick_options)
   end
 
+  desc 'Run full spec suite with coverage enforcement (minimum 100%)'
+  task :coverage do
+    ENV['COVERAGE'] = 'true'
+    Rake::Task[:spec].invoke
+  end
+
   desc 'Run mutation testing with mutant'
   task :mutant do
     mutant_options = YAML.load_file('config/mutant.yml')
@@ -84,7 +88,14 @@ namespace :metrics do
   end
 end
 
-task ci: %w[metrics:rubocop metrics:yardstick:verify spec:integration]
+task ci: %w[
+  metrics:rubocop
+  metrics:reek
+  metrics:flay
+  metrics:flog
+  metrics:yardstick:verify
+  metrics:coverage
+]
 
 # metrics:mutant is intentionally excluded from ci — mutation testing
 # is slow and should be run separately as needed.

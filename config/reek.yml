@@ -113,7 +113,9 @@ detectors:
     accept: []
   UncommunicativeVariableName:
     enabled: true
-    exclude: []
+    exclude:
+    # Ruby convention for rescue variable; rubocop Naming/RescuedExceptionsVariableName requires 'e'
+    - Yardstick::CLI#self.parse_config
     reject:
     - '/^.$/'
     - '/[0-9]$/'
