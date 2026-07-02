@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 module Yardstick
   # Handles writing reports
@@ -28,9 +28,9 @@ module Yardstick
     # @return [undefined]
     #
     # @api private
-    def write(&block)
+    def write(&)
       target.dirname.mkpath
-      target.open('w', &block)
+      target.open('w', &)
     end
 
     # @see [Pathname#to_s]

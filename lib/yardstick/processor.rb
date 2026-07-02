@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 module Yardstick
   # Handle procesing a docstring or path of files
@@ -38,5 +38,5 @@ module Yardstick
     def paths
       Array(config.path).map(&:to_s)
     end
-  end # class Processor
-end # module Yardstick
+  end
+end

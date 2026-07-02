@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'rake'
 require 'rake/tasklib'
@@ -27,8 +27,8 @@ module Yardstick
       #   the measurement task
       #
       # @api public
-      def initialize(name = :yardstick_measure, options = {}, &block)
-        super(name, Config.coerce(options, &block))
+      def initialize(name = :yardstick_measure, options = {}, &)
+        super(name, Config.coerce(options, &))
 
         define
       end
@@ -56,6 +56,6 @@ module Yardstick
         desc "Measure docs in #{config.path} with yardstick"
         task(name) { yardstick_measure }
       end
-    end # class Measurement
-  end # module Rake
-end # module Yardstick
+    end
+  end
+end

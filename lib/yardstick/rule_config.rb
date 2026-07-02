@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 module Yardstick
   # Config class for rules
@@ -8,7 +8,7 @@ module Yardstick
   class RuleConfig
     include Concord.new(:enabled, :exclude)
 
-    METHOD_SEPARATOR = /\#|\./.freeze
+    METHOD_SEPARATOR = /\#|\./
 
     # Initializes new instance of rule config
     #

@@ -1,17 +1,20 @@
+# frozen_string_literal: true
+
 module Yardstick
   # A string decorator for applying unix console codes
   class Decorator
-    include Adamantium, Concord.new(:color, :mode)
+    include Concord.new(:color, :mode)
+    include Adamantium
 
-    FORMAT = "\e[%{mode};%{color}m%{string}\e[0m".freeze
+    FORMAT = "\e[%<mode>d;%<color>dm%<string>s\e[0m"
 
     COLOR_CODES = IceNine.deep_freeze(
-      red:    31,
+      red: 31,
       yellow: 33
     )
 
     MODE_CODES = IceNine.deep_freeze(
-      bold:      1,
+      bold: 1,
       underline: 4
     )
 
@@ -41,8 +44,7 @@ module Yardstick
     end
 
     NONE = Class.new(self) do
-      def initialize
-      end
+      def initialize; end # rubocop:disable Lint/MissingSuper
 
       def decorate(string)
         string
@@ -51,5 +53,5 @@ module Yardstick
 
     RED_BOLD          = new(:red, :bold)
     YELLOW_UNDERLINED = new(:yellow, :underline)
-  end # class Decorator
-end # module Yardstick
+  end
+end

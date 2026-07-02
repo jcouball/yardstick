@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'spec_helper'
 require 'yardstick/cli'
@@ -87,7 +87,7 @@ describe Yardstick::CLI do
 
     describe 'with an Array of String objects' do
       before :all do
-        @measurements = capture_stdout { described_class.run(*[Yardstick::ROOT.join('lib', 'yardstick.rb').to_s]) }
+        @measurements = capture_stdout { described_class.run(Yardstick::ROOT.join('lib', 'yardstick.rb').to_s) }
       end
 
       it_should_behave_like 'measured itself'
@@ -96,7 +96,7 @@ describe Yardstick::CLI do
 
     describe 'with an Array of Pathname objects' do
       before :all do
-        @measurements = capture_stdout { described_class.run(*[Yardstick::ROOT.join('lib', 'yardstick.rb')]) }
+        @measurements = capture_stdout { described_class.run(Yardstick::ROOT.join('lib', 'yardstick.rb')) }
       end
 
       it_should_behave_like 'measured itself'

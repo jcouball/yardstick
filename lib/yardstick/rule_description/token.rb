@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Yardstick
   # Rule description composed of tokens which can be formatted
   class RuleDescription
@@ -16,7 +18,9 @@ module Yardstick
         new(string[1..-2])
       end
 
-      include AbstractType, Adamantium, Concord.new(:string)
+      include Concord.new(:string)
+      include Adamantium
+      include AbstractType
 
       # Decorate using decorator specified by token type
       #

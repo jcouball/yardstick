@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 require 'spec_helper'
 
@@ -7,10 +7,10 @@ RSpec.describe Yardstick::RuleDescription::Formatter::Null, '#format' do
 
   let(:description) do
     Yardstick::RuleDescription.new([
-      Yardstick::RuleDescription::Token::Subject.new('important'),
-      Yardstick::RuleDescription::Token::Text.new(' recommended '),
-      Yardstick::RuleDescription::Token::Option.new('value'),
-    ])
+                                     Yardstick::RuleDescription::Token::Subject.new('important'),
+                                     Yardstick::RuleDescription::Token::Text.new(' recommended '),
+                                     Yardstick::RuleDescription::Token::Option.new('value'),
+                                   ])
   end
 
   it { should eql('important recommended value') }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Yardstick
   # Rule description composed of tokens which can be formatted
   class RuleDescription
@@ -5,7 +7,8 @@ module Yardstick
     module Classifier
       # List of classifiers
       class List
-        include Adamantium, Concord.new(:classifiers)
+        include Concord.new(:classifiers)
+        include Adamantium
 
         # Classify a token by returning the first match
         #
@@ -45,7 +48,8 @@ module Yardstick
 
       # Pattern based classifier
       class Pattern
-        include Adamantium, Concord::Public.new(:type, :pattern)
+        include Concord::Public.new(:type, :pattern)
+        include Adamantium
 
         # Try to coerce text if it matches
         #
@@ -84,7 +88,8 @@ module Yardstick
 
       # Catch all classifier
       class Default
-        include Adamantium, Concord.new(:type)
+        include Concord.new(:type)
+        include Adamantium
 
         # Coerces any string
         #

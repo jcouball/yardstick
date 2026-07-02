@@ -1,14 +1,17 @@
+# frozen_string_literal: true
+
 module Yardstick
   class RuleDescription
     # Rule description text formatter
     class Formatter
-      include Adamantium, Concord.new(:description)
+      include Concord.new(:description)
+      include Adamantium
 
       # Map of token types to decorators
       TOKEN_DECORATORS = {
         Token::Subject => Decorator::RED_BOLD,
-        Token::Option  => Decorator::YELLOW_UNDERLINED,
-        Token::Text    => Decorator::NONE
+        Token::Option => Decorator::YELLOW_UNDERLINED,
+        Token::Text => Decorator::NONE
       }.freeze
 
       # Translate rule description tokens into a single decorated string

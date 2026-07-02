@@ -1,9 +1,9 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 guard :bundler do
   watch('Gemfile')
   watch('Gemfile.lock')
-  watch(%w{.+.gemspec\z})
+  watch(%w[.+.gemspec\z])
 end
 
 guard :rspec, cli: File.read('.rspec').split.push('--fail-fast').join(' '), keep_failed: false do
@@ -19,14 +19,14 @@ guard :rspec, cli: File.read('.rspec').split.push('--fail-fast').join(' '), keep
   # Run unit specs if associated lib code is modified
   watch(%r{\Alib/(.+)\.rb\z})                                         { |m| Dir["spec/unit/#{m[1]}*"]         }
   watch(%r{\Alib/(.+)/support/(.+)\.rb\z})                            { |m| Dir["spec/unit/#{m[1]}/#{m[2]}*"] }
-  watch("lib/#{File.basename(File.expand_path('../', __FILE__))}.rb") { 'spec'                                }
+  watch("lib/#{File.basename(File.expand_path(__dir__))}.rb") { 'spec'                                }
 
   # Run a spec if it is modified
   watch(%r{\Aspec/(?:unit|integration)/.+_spec\.rb\z})
 end
 
 guard :rubocop, cli: %w[--config config/rubocop.yml] do
-  watch(%r{.+\.(?:rb|rake)\z})
+  watch(/.+\.(?:rb|rake)\z/)
   watch(%r{\Aconfig/rubocop\.yml\z})  { |m| File.dirname(m[0]) }
   watch(%r{(?:.+/)?\.rubocop\.yml\z}) { |m| File.dirname(m[0]) }
 end

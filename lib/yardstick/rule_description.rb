@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Yardstick
   # Rule description composed of tokens which can be formatted
   class RuleDescription
@@ -14,7 +16,9 @@ module Yardstick
       new(Tokenizer.new(description).tokenize)
     end
 
-    include Adamantium, Concord.new(:tokens), Enumerable
+    include Enumerable
+    include Concord.new(:tokens)
+    include Adamantium
 
     # @!method each
     # Iterate over each token in description

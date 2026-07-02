@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 module Yardstick
   # A measurement given a constraint on the docs
@@ -66,6 +66,7 @@ module Yardstick
     # @api public
     def puts(io = $stdout)
       return if ok?
+
       io.puts("#{@document.file}:#{@document.line}: #{@document.path}: #{formatted_description}")
     end
 
@@ -102,7 +103,8 @@ module Yardstick
     # @api private
     def measure
       return :skip if !@rule.enabled? || !@rule.validatable?
+
       @rule.valid?
     end
-  end # class Measurement
-end # module Yardstick
+  end
+end
