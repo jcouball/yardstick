@@ -1,5 +1,11 @@
 inherit_from: ../.rubocop.yml
 
+# class Foo < Data.define(:a, :b) is preferred over the block form for named
+# classes: it produces a proper named class that knows its own name and supports
+# inheritance within the class body (e.g. subclasses, include).
+Style/DataInheritance:
+  Enabled: false
+
 # Avoid parameter lists longer than five parameters.
 Metrics/ParameterLists:
   Max: 3

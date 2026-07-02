@@ -1,10 +1,17 @@
 # frozen_string_literal: true
 
+# Measure YARD documentation coverage
 module Yardstick
-  # Handles writing reports
-  class ReportOutput
-    include Concord.new(:target)
+  # Holds the attributes for a ReportOutput
+  # @!attribute [r] target
+  #   The report output file path
+  #   @api private
+  #   @return [Pathname]
+  ReportOutputData = Data.define(:target)
+  private_constant :ReportOutputData
 
+  # Handles writing reports
+  class ReportOutput < ReportOutputData
     # Coerces string path into proper output object
     #
     # @param [String, Pathname] target
@@ -14,7 +21,7 @@ module Yardstick
     #
     # @api private
     def self.coerce(target)
-      new(Pathname(target))
+      new(target: Pathname(target))
     end
 
     # Open up a report for writing
