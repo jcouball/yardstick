@@ -6,7 +6,6 @@ require 'delegate'
 require 'yard'
 require 'yard/logging'
 require 'concord'
-require 'ice_nine'
 require 'adamantium'
 
 require 'yardstick/ordered_set'

@@ -8,15 +8,15 @@ module Yardstick
 
     FORMAT = "\e[%<mode>d;%<color>dm%<string>s\e[0m"
 
-    COLOR_CODES = IceNine.deep_freeze(
-      red: 31,
+    COLOR_CODES = {
+      red:    31,
       yellow: 33
-    )
+    }.freeze
 
-    MODE_CODES = IceNine.deep_freeze(
-      bold: 1,
+    MODE_CODES = {
+      bold:      1,
       underline: 4
-    )
+    }.freeze
 
     private_constant :FORMAT, :COLOR_CODES, :MODE_CODES
 
