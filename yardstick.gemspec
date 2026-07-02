@@ -27,8 +27,6 @@ Gem::Specification.new do |spec|
   spec.bindir      = 'exe'
   spec.executables = Dir['exe/*'].map { |f| File.basename(f) }
 
-  spec.add_dependency 'adamantium',    '~> 0.2'
-  spec.add_dependency 'concord',       '~> 0.1'
   spec.add_dependency 'yard',          '~> 0.9'
 
   spec.add_development_dependency 'rake',      '~> 13.0'
