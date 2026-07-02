@@ -36,8 +36,8 @@ module Yardstick
       args << '--help' if args.empty?
       option_parser.parse!(args)
       Config.new(path: args)
-    rescue OptionParser::InvalidOption => e
-      display_exit(e)
+    rescue OptionParser::InvalidOption => error
+      display_exit(error)
     end
 
     # Return an OptionParser instance for the command-line app

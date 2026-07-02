@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Extensions to YARD classes used by yardstick
 module YARD  # :nodoc: all
   # Test if JRuby head is being used
   JRUBY_19MODE = RUBY_VERSION >= '1.9' && RUBY_ENGINE.eql?('jruby')

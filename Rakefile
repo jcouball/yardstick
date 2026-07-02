@@ -2,6 +2,7 @@
 
 require 'yaml'
 require 'rspec/core/rake_task'
+require 'reek/rake/task'
 require 'rubocop/rake_task'
 require 'yard'
 require 'yardstick/rake/measurement'
@@ -28,6 +29,11 @@ yardstick_options = YAML.load_file('config/yardstick.yml')
 namespace :metrics do
   RuboCop::RakeTask.new(:rubocop) do |t|
     t.options = ['--config', 'config/rubocop.yml']
+  end
+
+  Reek::Rake::Task.new(:reek) do |t|
+    t.config_file  = 'config/reek.yml'
+    t.source_files = 'lib/**/*.rb'
   end
 
   namespace :yardstick do
