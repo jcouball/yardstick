@@ -20,7 +20,6 @@ module Yardstick
 
       include Concord.new(:string)
       include Adamantium
-      include AbstractType
 
       # Decorate using decorator specified by token type
       #
