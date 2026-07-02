@@ -10,7 +10,7 @@ module Yardstick
     #
     # @api private
     def self.parse_paths(paths)
-      YARD.parse(paths, [], Logger::ERROR)
+      YARD.parse(paths, [], YARD::Logger::ERROR)
       documents
     end
 
