@@ -9,9 +9,9 @@ module Yardstick
     let(:description) { '*subject* should be _option_' }
     let(:tokens) do
       [
-        described_class::Token::Subject.new('subject'),
-        described_class::Token::Text.new(' should be '),
-        described_class::Token::Option.new('option')
+        described_class::Token::Subject.new(string: 'subject'),
+        described_class::Token::Text.new(string: ' should be '),
+        described_class::Token::Option.new(string: 'option')
       ]
     end
 
