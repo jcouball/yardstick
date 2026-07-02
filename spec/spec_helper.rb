@@ -1,16 +1,12 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 if ENV['COVERAGE'] == 'true'
   require 'simplecov'
-  require 'coveralls'
-
-  SimpleCov.formatters = [SimpleCov::Formatter::HTMLFormatter, Coveralls::SimpleCov::Formatter]
 
   SimpleCov.start do
     add_filter '/config'
     add_filter '/spec'
     add_filter '/vendor'
-    command_name 'spec:unit'
     minimum_coverage 100
   end
 end
