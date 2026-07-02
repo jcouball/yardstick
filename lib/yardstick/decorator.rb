@@ -18,7 +18,7 @@ module Yardstick
       underline: 4
     )
 
-    private_constant(*constants(false))
+    private_constant :FORMAT, :COLOR_CODES, :MODE_CODES
 
     # Initializes new string decorator instance
     #
