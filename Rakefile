@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'yaml'
+require 'flay'
+require 'flay_task'
 require 'rspec/core/rake_task'
 require 'reek/rake/task'
 require 'rubocop/rake_task'
@@ -27,6 +29,13 @@ YARD::Rake::YardocTask.new
 yardstick_options = YAML.load_file('config/yardstick.yml')
 
 namespace :metrics do
+  flay_options = YAML.load_file('config/flay.yml')
+
+  FlayTask.new(:flay) do |t|
+    t.dirs      = ['lib']
+    t.threshold = flay_options.fetch('threshold', 0)
+  end
+
   RuboCop::RakeTask.new(:rubocop) do |t|
     t.options = ['--config', 'config/rubocop.yml']
   end
