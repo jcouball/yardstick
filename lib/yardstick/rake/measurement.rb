@@ -10,8 +10,6 @@ module Yardstick
   module Rake
     # A rake task for measuring docs in a set of files
     class Measurement < ::Rake::TaskLib
-      include Concord.new(:name, :config)
-
       # Initializes a Measurement task
       #
       # @example
@@ -27,8 +25,9 @@ module Yardstick
       #   the measurement task
       #
       # @api public
-      def initialize(name = :yardstick_measure, options = {}, &)
-        super(name, Config.coerce(options, &))
+      def initialize(name = :yardstick_measure, options = {}, &) # rubocop:disable Lint/MissingSuper
+        @name   = name
+        @config = Config.coerce(options, &)
 
         define
       end
@@ -46,6 +45,20 @@ module Yardstick
       end
 
       private
+
+      # The rake task name
+      #
+      # @return [Symbol]
+      #
+      # @api private
+      attr_reader :name
+
+      # The yardstick configuration
+      #
+      # @return [Yardstick::Config]
+      #
+      # @api private
+      attr_reader :config
 
       # Define the task
       #
