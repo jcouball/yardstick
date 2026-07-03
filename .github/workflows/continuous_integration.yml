@@ -38,3 +38,6 @@ jobs:
       - name: Run Build
         run: bundle exec rake ci
         timeout-minutes: 15
+
+      - name: Test Gem
+        run: bundle exec rake test:gem

@@ -11,6 +11,8 @@ require 'yard'
 require 'yardstick/rake/measurement'
 require 'yardstick/rake/verify'
 
+require 'bundler/gem_tasks'
+
 RSpec::Core::RakeTask.new(:spec) do |t|
   t.pattern = 'spec/{unit,integration}/**/*_spec.rb'
 end
@@ -101,3 +103,14 @@ task ci: %w[
 # is slow and should be run separately as needed.
 
 task default: :spec
+
+require 'English'
+
+desc 'Build and install the yardstick gem and run a sanity check'
+task 'test:gem': :install do
+  output = `ruby -e "require 'yardstick'; puts Yardstick::VERSION"`.chomp
+  raise 'Gem test failed' unless $CHILD_STATUS.success?
+  raise 'Expected gem test to return a version string' unless output =~ /^\d+\.\d+\.\d+$/
+
+  puts 'Gem Test Succeeded'
+end
