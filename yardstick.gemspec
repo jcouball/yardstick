@@ -27,17 +27,18 @@ Gem::Specification.new do |spec|
   spec.bindir      = 'exe'
   spec.executables = Dir['exe/*'].map { |f| File.basename(f) }
 
-  spec.add_dependency 'yard',          '~> 0.9'
+  spec.add_dependency 'yard', '~> 0.9'
 
-  spec.add_development_dependency 'flay',        '~> 2.0'
-  spec.add_development_dependency 'flog',        '~> 4.0'
+  spec.add_development_dependency 'flay', '~> 2.14'
+  spec.add_development_dependency 'flog', '~> 4.9'
   spec.add_development_dependency 'mutant-rspec', '~> 0.16'
-  spec.add_development_dependency 'rake',        '~> 13.0'
-  spec.add_development_dependency 'reek',      '~> 6.0'
-  spec.add_development_dependency 'rspec',     '~> 3.13'
+  spec.add_development_dependency 'rake', '~> 13.4'
+  spec.add_development_dependency 'reek', '~> 6.5'
+  spec.add_development_dependency 'rspec', '~> 3.13'
   spec.add_development_dependency 'rspec-its', '~> 2.0'
-  spec.add_development_dependency 'rubocop',   '~> 1.88'
+  spec.add_development_dependency 'rubocop', '~> 1.88'
   spec.add_development_dependency 'simplecov', '~> 0.22'
+
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
