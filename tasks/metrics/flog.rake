@@ -6,7 +6,7 @@ require 'flog'
 namespace :metrics do
   desc 'Analyze code complexity with flog'
   task :flog do
-    flog_options = YAML.load_file('config/flog.yml')
+    flog_options = YAML.safe_load_file('config/flog.yml')
     threshold    = flog_options.fetch('threshold', 10)
     flog         = Flog.new(continue: true)
     flog.flog(*Flog.expand_dirs_to_files('lib'))

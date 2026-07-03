@@ -135,7 +135,7 @@ rules:
 Rake tasks take these options as a second argument:
 
 ```ruby
-options = YAML.load_file('config/yardstick.yml')
+options = YAML.safe_load_file('config/yardstick.yml')
 
 Yardstick::Rake::Verify.new(:verify_measurements, options)
 ```

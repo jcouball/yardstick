@@ -7,7 +7,7 @@ namespace :metrics do
   # mutation testing is slow and should be run separately as needed.
   desc 'Run mutation testing with mutant'
   task :mutant do
-    mutant_options    = YAML.load_file('config/mutant.yml')
+    mutant_options    = YAML.safe_load_file('config/mutant.yml')
     namespace_subject = mutant_options.fetch('namespace', 'Yardstick')
     gem_name          = mutant_options.fetch('name', 'yardstick')
     args = %W[
