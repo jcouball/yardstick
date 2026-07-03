@@ -116,11 +116,10 @@ module Yardstick
     #
     # @api private
     def for_rule(rule_class)
-      key = rule_class.to_s[NAMESPACE_PREFIX.length..]
+      name = rule_class.to_s
+      raise InvalidRule, "every rule must begin with #{NAMESPACE_PREFIX}" unless name.start_with?(NAMESPACE_PREFIX)
 
-      raise InvalidRule, "every rule must begin with #{NAMESPACE_PREFIX}" unless key
-
-      RuleConfig.new(@rules.fetch(key.to_sym, {}))
+      RuleConfig.new(@rules.fetch(name.delete_prefix(NAMESPACE_PREFIX).to_sym, {}))
     end
 
     # Specify if the coverage summary should be displayed
